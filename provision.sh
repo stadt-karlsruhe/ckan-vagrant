@@ -14,7 +14,6 @@ sudo mkdir -p /usr/lib/ckan/default
 sudo chown -R `whoami` /usr/lib/ckan/default
 virtualenv /usr/lib/ckan/default
 . /usr/lib/ckan/default/bin/activate
-pip install --upgrade setuptools
 
 # Install CKAN from Git repository in shared folder
 cd /ckan
@@ -30,8 +29,8 @@ ln -sf /vagrant/development.ini
 ln -sf /ckan/who.ini
 
 # Configure Solr
-sudo ln -sf /vagrant/jetty /etc/default/jetty
-sudo ln -sf /ckan//ckan/config/solr/schema.xml /etc/solr/conf/schema.xml
+sudo cp /vagrant/jetty /etc/default/jetty
+sudo cp /ckan/ckan/config/solr/schema.xml /etc/solr/conf/schema.xml
 sudo service jetty restart
 
 # Set up PostgreSQL
@@ -45,4 +44,8 @@ paster --plugin=ckan datastore set-permissions \
        -c /etc/ckan/default/development.ini \
     | sudo -u postgres psql --set ON_ERROR_STOP=1
 paster --plugin=ckan db init -c /etc/ckan/default/development.ini
+
+# Fix problems with outdated setuptools
+# https://github.com/pyca/cryptography/issues/2838
+pip install --upgrade pip setuptools
 
