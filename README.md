@@ -21,6 +21,13 @@ you need to clone both this repository and that of CKAN:
     git clone https://github.com/stadt-karlsruhe/ckan-vagrant.git
     git clone https://github.com/ckan/ckan.git
 
+Open `ckan/test-core.ini` and change the following settings:
+
+    sqlalchemy.url = postgresql://ckan_default:ckan_default@localhost/ckan_test
+    ckan.datastore.write_url = postgresql://ckan_default:ckan_default@localhost/datastore_test
+    ckan.datastore.read_url = postgresql://datastore_default:datastore_default@localhost/datastore_test
+    solr_url = http://127.0.0.1:8983/solr
+
 
 ## Usage
 
@@ -42,4 +49,17 @@ From the SSH shell you can then, for example, run CKAN's development server:
     paster serve -v --reload /etc/ckan/default/bin/activate
 
 From the host machine, the server is reachable via http://172.16.16.18:5000.
+
+
+## Shortcuts
+
+For common tasks the following shortcuts exist:
+
+- `./serve.sh` makes sure that the VM is running and starts the development
+  server.
+
+- `./runtests.sh` makes sure that the VM is running and runs the CKAN tests.
+  By default, all tests are run. You can pass additional arguments to select
+  other tests, these are passed to `nosetests`. For example, `./runtests
+  ckanext` will only run the extension tests.
 

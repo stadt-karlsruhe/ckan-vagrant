@@ -36,12 +36,17 @@ sudo service jetty restart
 # Set up PostgreSQL
 sudo -u postgres psql -c "CREATE USER ckan_default
                         WITH PASSWORD 'ckan_default';"
-sudo -u postgres createdb -O ckan_default ckan_default -E utf-8
 sudo -u postgres psql -c "CREATE USER datastore_default
                         WITH PASSWORD 'datastore_default';"
+sudo -u postgres createdb -O ckan_default ckan_default -E utf-8
 sudo -u postgres createdb -O ckan_default datastore_default -E utf-8
+sudo -u postgres createdb -O ckan_default ckan_test -E utf-8
+sudo -u postgres createdb -O ckan_default datastore_test -E utf-8
 paster --plugin=ckan datastore set-permissions \
        -c /etc/ckan/default/development.ini \
+    | sudo -u postgres psql --set ON_ERROR_STOP=1
+paster --plugin=ckan datastore set-permissions \
+       -c /ckan/test-core.ini \
     | sudo -u postgres psql --set ON_ERROR_STOP=1
 paster --plugin=ckan db init -c /etc/ckan/default/development.ini
 
