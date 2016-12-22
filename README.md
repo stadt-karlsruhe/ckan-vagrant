@@ -63,3 +63,5 @@ For common tasks the following shortcuts exist:
   other tests, these are passed to `nosetests`. For example, `./runtests
   ckanext` will only run the extension tests.
 
+- `./ssh.sh` makes sure that the VM is running and opens an SSH shell.
+

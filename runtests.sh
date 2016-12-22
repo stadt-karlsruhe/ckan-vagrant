@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Exit on error
+set -e
+
 ARGS="ckan ckanext"
 if [[ $# -gt 0 ]]; then
     ARGS=$@
