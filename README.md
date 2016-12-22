@@ -3,9 +3,6 @@
 This repository contains a simple [Vagrant][vagrant] configuration to set up a
 virtual machine for [CKAN][ckan] development.
 
-[vagrant]: https://www.vagrantup.com/
-[ckan]: https://github.com/ckan/ckan
-
 
 ## Installation
 
@@ -64,4 +61,9 @@ For common tasks the following shortcuts exist:
   ckanext` will only run the extension tests.
 
 - `./ssh.sh` makes sure that the VM is running and opens an SSH shell.
+
+
+[vagrant]: https://www.vagrantup.com/
+[ckan]: https://github.com/ckan/ckan
+[virtualbox]: https://www.virtualbox.org/
 
