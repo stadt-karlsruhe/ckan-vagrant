@@ -5,9 +5,9 @@ set -e
 
 # Install required packages
 sudo apt-get update
-sudo apt-get install --yes python-dev postgresql libpq-dev python-pip \
-                           python-virtualenv git-core solr-jetty \
-                           openjdk-6-jdk redis-server
+sudo apt-get install --yes python-dev postgresql libpq-dev \
+                           python-virtualenv git-core solr-tomcat \
+                           redis-server
 
 # Create virtualenv
 sudo mkdir -p /usr/lib/ckan/default
@@ -29,9 +29,8 @@ ln -sf /vagrant/development.ini
 ln -sf /ckan/who.ini
 
 # Configure Solr
-sudo cp /vagrant/jetty /etc/default/jetty
 sudo cp /ckan/ckan/config/solr/schema.xml /etc/solr/conf/schema.xml
-sudo service jetty restart
+sudo service tomcat6 restart
 
 # Set up PostgreSQL
 sudo -u postgres psql -c "CREATE USER ckan_default
