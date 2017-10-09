@@ -45,7 +45,7 @@ paster --plugin=ckan datastore set-permissions \
        -c /etc/ckan/default/development.ini \
     | sudo -u postgres psql --set ON_ERROR_STOP=1
 paster --plugin=ckan datastore set-permissions \
-       -c /etc/ckan/default/development.ini \
+       -c /vagrant/test-core.ini \
     | sudo -u postgres psql --set ON_ERROR_STOP=1
 paster --plugin=ckan db init -c /etc/ckan/default/development.ini
 

@@ -11,5 +11,5 @@ fi
 vagrant up
 vagrant ssh -c ". /usr/lib/ckan/default/bin/activate; \
                 cd /ckan; \
-                nosetests --ckan --with-pylons=test-core.ini $ARGS"
+                nosetests --ckan --with-pylons=/vagrant/test-core.ini $ARGS"
 
